@@ -54,23 +54,51 @@ header > #navbar_list > li > a{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
+}
+
+.container > .left_icon, .right_icon{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+
+.container > .left_icon, .right_icon:hover{
+    cursor: pointer;
+}
+
+.container > .left_icon > i{
+    font-size: 2em;
+    color: black;
+    padding: 30px;
 }
 
 .container > .content{
     width: 60%;
-    height: 760px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    overflow: hidden;
+    justify-content: center;
     border: 1px solid #A9C9FF;
 }
 
-.container > .content > .images{
+.container > .content > .content-container{
+    display: none;
+}
+.container > .content > .content-container.active{
+    display: block;
+}
+/* .container > .content > .images{
     width: 50%;
     height: 100%;
+    display: none;
 }
+.container > .content > .book_information{
+    width: 50%;
+    height: 100%;
+    display: none;
+}
+
 .container > .content > .images > img{
     width: 100%;
     height: 100%;
-}
+} */

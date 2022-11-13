@@ -40,78 +40,105 @@ header.appendChild(ul);
 
 let container = document.createElement('div');
 let content = document.createElement('div');
-let images = document.createElement('div');
-let book_information = document.createElement('div');
+
+/* left and right icons */
 let left_icon = document.createElement('div');
 let right_icon = document.createElement('div');
-let icon = document.createElement('i');
+let left = document.createElement('i');
+let right = document.createElement('i');
+left.setAttribute('class', 'fas fa-solid fa-chevrons-left');
+right.setAttribute('class', 'fa-solid fa-chevrons-right');
+left_icon.setAttribute('class', 'left_icon');
+right_icon.setAttribute('class', 'right_icon');
+left_icon.appendChild(left);
+right_icon.appendChild(right);
+
+
 container.setAttribute('class', 'container');
 content.setAttribute('class', 'content');
-images.setAttribute('class', 'images');
-book_information.setAttribute('class', 'book_information')
+
 
 document.body.appendChild(container);
-content.appendChild(images);
-content.appendChild(book_information);
+container.appendChild(left_icon);
 container.appendChild(content);
+container.appendChild(right_icon);
 
 
-/* book information here starts */
 
+
+let sizeOfBook;
+let index = 0;
 let getInfo = async function() {
-    let book_info;
     let response = await fetch('books.json') //path to the file with json data
-    book_info = await response.json();
+    let book_info = await response.json();
+    sizeOfBook = book_info.length;
+
     for(let i=0; i<book_info.length; i++) {
+
+        let content_container = document.createElement('div');
+        let images = document.createElement('div');
+        let book_information = document.createElement('div');
+
+        content_container.setAttribute('class', 'content-container')
+        images.setAttribute('class', 'images');
+        book_information.setAttribute('class', 'book_information');
+
         let image = document.createElement('img');
         image.setAttribute('src', book_info[i].imageLink);
         images.appendChild(image);
 
+        let author = document.createElement('h1');
+        let book_name = document.createElement('h3');
+        let price = document.createElement('p');
+        let button_more = document.createElement('button');
+        let button_bag = document.createElement('button');
+        author.textContent = book_info[i].author;
+        book_name.textContent = book_info[i].title;
+        price.textContent = `$${book_info[i].price}`;
+        button_more.innerHTML = 'show more';
+        button_bag.innerHTML = 'add bag';
 
-        let author = book_info[i].author;
-        let book_name = book_info[i].title;
-        let price = `$${book_info[i].price}`;
+        book_information.appendChild(author);
+        book_information.appendChild(book_name);
+        book_information.appendChild(price);
+        book_information.appendChild(button_bag);
+        book_information.appendChild(button_more);
 
-        book_information.innerHTML += `
-                <h1>${author}</h1>
-                <h3>${book_name}</h3>
-                <p>${price}</p>
-                <button>show more</button>
-                <button>add bag</button>
-        `;
+        content_container.appendChild(images);
+        content_container.appendChild(book_information);
 
-        book_information = ''
-        
-        // let show_more = document.createElement('button');
-        // let add_bag = document.createElement('button');
-        // let show_more_title = document.createTextNode('show more');
-        // let add_bag_title = document.createTextNode('add bag');
+        content.appendChild(content_container);
 
-        // show_more.appendChild(show_more_title);
-        // add_bag.appendChild(add_bag_title);
+        for(let j=0; j<book_info.length; j++) {
+            content_container.classList.remove('active');
+        }
 
-
-        // /* setting info to these variables */
-        // author_title = document.createTextNode(``);
-        // book_name_title = document.createTextNode('book_info[i].author')
-        // author.appendChild(author_title);
-        // book_name.appendChild();
-        // price.appendChild();
+        if(index == i) content_container.classList.add('active');
 
 
-
-        /* adding these elements to the content page */
-        // book_information.appendChild(author);
-        // book_information.appendChild(book_name);
-        // book_information.appendChild(price);
-        // book_information.appendChild(show_more);
-        // book_information.appendChild(add_bag);
-
-
-        console.log(book_info[i].author)
-        console.log(book_info[i].title)
-        console.log(book_info[i].price)
+        console.log(index)
     }
 }
 
 getInfo();
+
+/* ------------------------------------------------------------ */
+let total_length = sizeOfBook;
+left_icon.addEventListener('click', function() {
+    next('left');
+})
+
+
+right_icon.addEventListener('click', function() {
+    next('right');
+})
+
+function next(direction) {
+    if(direction=='right') {
+        index++;
+        if(index == total_length) {
+            index = 0;
+        }
+    }
+    getInfo();
+}
