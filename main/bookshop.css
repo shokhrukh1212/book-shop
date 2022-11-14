@@ -49,18 +49,20 @@ header > #navbar_list > li > a{
 /*starting main bookshop page*/
 .container{
     width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(132deg, #ffd89b 0%, #19547b 100%);
+    min-height: 95vh;
+    background: linear-gradient(132deg, #19547b 0%, #ffd89b 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    position: relative;
 }
 
 .container > .left_icon, .right_icon{
     width: 50px;
     height: 50px;
     background-color: white;
+    margin: 20px;
 }
 
 .container > .left_icon, .right_icon:hover{
@@ -75,30 +77,85 @@ header > #navbar_list > li > a{
 
 .container > .content{
     width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 600px;
     border: 1px solid #A9C9FF;
+    position: relative;
 }
 
 .container > .content > .content-container{
     display: none;
 }
 .container > .content > .content-container.active{
-    display: block;
-}
-/* .container > .content > .images{
-    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 100%;
-    display: none;
-}
-.container > .content > .book_information{
-    width: 50%;
-    height: 100%;
-    display: none;
+    width: 100%;
 }
 
-.container > .content > .images > img{
+.container > .content > .content-container.active > .images{
+    width: 500px;
+    height: 100%;
+}
+.container > .content > .content-container.active > .images > img{
     width: 100%;
     height: 100%;
-} */
+}
+
+.container > .content > .content-container.active > .book_information{
+    width: 550px;
+    height: 100%;
+    text-align: center;
+    padding: 200px 0;
+}
+.content > .content-container.active > .book_information > h1{
+    font-size: 3em;
+    height: 100px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+.content > .content-container.active > .book_information > h3{
+    font-size: 1.5em;
+    font-style: italic;
+    height: 70px;
+    font-family: 'Times New Roman', Times, serif;
+    color: darkolivegreen;
+}
+
+.content > .content-container.active > .book_information > p{
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: #19547b;
+}
+.content > .content-container.active > .book_information > button{
+    width: 130px;
+    font-size: 1.1em;
+    padding: 10px 0px;
+    margin: 30px;
+    border-radius: 30px;
+    border: none;
+    background-color: beige;
+    color: darkblue;
+}
+.content > .content-container.active > .book_information > button:hover{
+    cursor: pointer;
+    background-color: lightcoral;
+    color: slategrey;
+}
+
+
+
+.container > .order_div{
+    width: 50px;
+    height: 50px;
+    background-color: #FFBBEC;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.container > .order_div:hover{
+    cursor: pointer;
+}

@@ -46,36 +46,50 @@ let left_icon = document.createElement('div');
 let right_icon = document.createElement('div');
 let left = document.createElement('i');
 let right = document.createElement('i');
+let order_div = document.createElement('div');
+let order_icon = document.createElement('i');
+let order_number_div = document.createElement('div');
+
 left.setAttribute('class', 'fas fa-solid fa-chevrons-left');
 right.setAttribute('class', 'fa-solid fa-chevrons-right');
 left_icon.setAttribute('class', 'left_icon');
 right_icon.setAttribute('class', 'right_icon');
+order_icon.setAttribute('class', 'fa-regular fa-cart-shopping');
 left_icon.appendChild(left);
 right_icon.appendChild(right);
 
+order_div.appendChild(order_icon);
+order_number_div.innerHTML = 0;
+order_div.appendChild(order_number_div);
 
 container.setAttribute('class', 'container');
 content.setAttribute('class', 'content');
-
+order_div.setAttribute('class', 'order_div');
 
 document.body.appendChild(container);
 container.appendChild(left_icon);
 container.appendChild(content);
 container.appendChild(right_icon);
+container.appendChild(order_div);
 
 
 
 
-let sizeOfBook;
 let index = 0;
+let sizeOfBook;
+let content_container;
+let book_arr = [];
+
+
 let getInfo = async function() {
     let response = await fetch('books.json') //path to the file with json data
     let book_info = await response.json();
-    sizeOfBook = book_info.length;
+    
+    sizeOfBook = 0;
 
     for(let i=0; i<book_info.length; i++) {
 
-        let content_container = document.createElement('div');
+        content_container = document.createElement('div');
         let images = document.createElement('div');
         let book_information = document.createElement('div');
 
@@ -94,36 +108,49 @@ let getInfo = async function() {
         let button_bag = document.createElement('button');
         author.textContent = book_info[i].author;
         book_name.textContent = book_info[i].title;
-        price.textContent = `$${book_info[i].price}`;
+        price.textContent = `Price: $${book_info[i].price}`;
         button_more.innerHTML = 'show more';
         button_bag.innerHTML = 'add bag';
 
         book_information.appendChild(author);
         book_information.appendChild(book_name);
         book_information.appendChild(price);
-        book_information.appendChild(button_bag);
         book_information.appendChild(button_more);
+        book_information.appendChild(button_bag);
+        
 
         content_container.appendChild(images);
         content_container.appendChild(book_information);
 
         content.appendChild(content_container);
 
-        for(let j=0; j<book_info.length; j++) {
-            content_container.classList.remove('active');
-        }
-
         if(index == i) content_container.classList.add('active');
 
+        sizeOfBook++;
 
-        console.log(index)
+
+        button_bag.addEventListener('click', function() {
+            order_number_div.innerHTML++;
+            sessionStorage.setItem('numbers', order_number_div.innerHTML);
+            book_arr.push(book_info[i].number)
+            sessionStorage.setItem('books', book_arr)
+        })
     }
 }
 
 getInfo();
 
+
+/* adding active class name */
+let content_children = content.children;
+function addActive(all ,elem) {
+    for(let i=0; i<all; i++) {
+        content_children[i].classList.remove('active');
+    }
+    content_children[elem].classList.add('active');
+}
+
 /* ------------------------------------------------------------ */
-let total_length = sizeOfBook;
 left_icon.addEventListener('click', function() {
     next('left');
 })
@@ -136,9 +163,27 @@ right_icon.addEventListener('click', function() {
 function next(direction) {
     if(direction=='right') {
         index++;
-        if(index == total_length) {
+        if(index == sizeOfBook) {
             index = 0;
         }
+
+        
+    } 
+
+    if(direction=='left') {
+        if(index == 0) 
+            index = sizeOfBook;
+        index--;
+        
     }
-    getInfo();
+    addActive(sizeOfBook, index);
+}
+
+
+/* going to order page */
+
+order_div.addEventListener('click', orderPage);
+
+function orderPage() {
+    window.open('../order/index.html', "_blank")
 }
