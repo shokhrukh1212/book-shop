@@ -44,19 +44,16 @@ let content = document.createElement('div');
 /* left and right icons */
 let left_icon = document.createElement('div');
 let right_icon = document.createElement('div');
-let left = document.createElement('i');
-let right = document.createElement('i');
 let order_div = document.createElement('div');
 let order_icon = document.createElement('i');
 let order_number_div = document.createElement('div');
 
-left.setAttribute('class', 'fas fa-solid fa-chevrons-left');
-right.setAttribute('class', 'fa-solid fa-chevrons-right');
+left_icon.innerHTML = 'previous';
+right_icon.innerHTML = 'next'
+
 left_icon.setAttribute('class', 'left_icon');
 right_icon.setAttribute('class', 'right_icon');
 order_icon.setAttribute('class', 'fa-regular fa-cart-shopping');
-left_icon.appendChild(left);
-right_icon.appendChild(right);
 
 order_div.appendChild(order_icon);
 order_number_div.innerHTML = 0;
@@ -128,14 +125,19 @@ let getInfo = async function() {
 
         sizeOfBook++;
 
-
+        let count = 0;
         button_bag.addEventListener('click', function() {
-            order_number_div.innerHTML++;
-            sessionStorage.setItem('numbers', order_number_div.innerHTML);
-            book_arr.push(book_info[i].number)
-            sessionStorage.setItem('books', book_arr)
+            if(count == 0) {
+                order_number_div.innerHTML++;
+                count++;
+                book_arr.push(book_info[i].number);
+            }
         })
+
     }
+
+        sessionStorage.setItem('books', book_arr)
+        book_arr = []
 }
 
 getInfo();

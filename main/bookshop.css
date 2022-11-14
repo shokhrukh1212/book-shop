@@ -59,11 +59,34 @@ header > #navbar_list > li > a{
 }
 
 .container > .left_icon, .right_icon{
-    width: 50px;
+    width: 130px;
     height: 50px;
-    background-color: white;
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    font-size: 1.2em;
 }
+
+.container > .left_icon{
+    background-color: cornflowerblue;
+}
+
+.container > .right_icon{
+    background-color: chartreuse;
+}
+
+.container > .left_icon:hover{
+    background-color: #ffd89b;
+    color: chocolate;
+}
+
+.container > .right_icon:hover{
+    background-color: #ffd89b;
+    color: chocolate;
+}
+
 
 .container > .left_icon, .right_icon:hover{
     cursor: pointer;
