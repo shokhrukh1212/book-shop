@@ -77,7 +77,6 @@ let sizeOfBook;
 let content_container;
 let book_arr = [];
 
-
 let getInfo = async function() {
     let response = await fetch('books.json') //path to the file with json data
     let book_info = await response.json();
@@ -131,13 +130,11 @@ let getInfo = async function() {
                 order_number_div.innerHTML++;
                 count++;
                 book_arr.push(book_info[i].number);
-            }
+            } 
         })
-
     }
 
-        sessionStorage.setItem('books', book_arr)
-        book_arr = []
+    localStorage.setItem('books', JSON.stringify(book_arr));
 }
 
 getInfo();

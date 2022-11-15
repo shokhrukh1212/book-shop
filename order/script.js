@@ -1,4 +1,4 @@
-let books_arr = sessionStorage.getItem('books');
+let books_arr = JSON.parse(localStorage.getItem('books'));
 console.log(books_arr)
 for(let i=0; i<books_arr.length; i++)
 console.log(Array.from(books_arr[i]));
