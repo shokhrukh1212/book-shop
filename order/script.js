@@ -1,36 +1,50 @@
 let books_arr = JSON.parse(localStorage.getItem('books'));
 console.log(books_arr)
+
 for(let i=0; i<books_arr.length; i++)
-console.log(Array.from(books_arr[i]));
+console.log(books_arr[i]);
 
 
 let container = document.getElementById('container');
+let total = document.getElementById('total');
+let sum = 0;
 
-let child_book = document.getElementsByClassName('child');
+document.body.appendChild(container);
+
 
 let getInformation = async function() {
     let response = await fetch('../main/books.json')
     let book_info = await response.json();
 
+
+    let order_button = document.createElement('button');
+        order_button.setAttribute('class', 'order_button');
+
     for(let i=0; i<books_arr.length; i++) {
         let child_div = document.createElement('div');
+        child_div.setAttribute('class', 'child_div');
         let img = document.createElement('img');
         let bookInfo = document.createElement('div');
+        bookInfo.setAttribute('class', 'book_info')
         let name = document.createElement('h3');
         let title = document.createElement('h1');
         let price = document.createElement('p');
         let button = document.createElement('button');
 
-        // let img_src = `../main/${book_info[books_arr[i]].imageLink}`;
-        // img.src = img_src;
+        button.innerHTML = 'x';
+        order_button.innerHTML = 'Complete';
+
+        let img_src = `../main/${book_info[books_arr[i]].imageLink}`;
+        img.src = img_src;
         child_div.appendChild(img);
 
         let name_title = document.createTextNode(book_info[books_arr[i]].author);
         let book_title = document.createTextNode(book_info[books_arr[i]].title);
-        let price_title = document.createTextNode(book_info[books_arr[i]].price);
+        let price_title = document.createTextNode(`$${book_info[books_arr[i]].price}`);
+        
         name.appendChild(name_title);
-        name.appendChild(book_title);
-        name.appendChild(price_title);
+        title.appendChild(book_title);
+        price.appendChild(price_title);
 
         bookInfo.appendChild(name);
         bookInfo.appendChild(title);
@@ -39,9 +53,26 @@ let getInformation = async function() {
         child_div.appendChild(bookInfo);
 
         child_div.appendChild(button);
-        document.body.appendChild(child_div);
+        
+        container.appendChild(child_div);
+        container.appendChild(order_button);
 
-        console.log(i)
+        sum += book_info[books_arr[i]].price;
+
+
+        function totalPrice() {
+            total.innerHTML = 'total: ' + `$${sum}`;
+        }
+
+
+        button.addEventListener('click', function() {
+            container.removeChild(child_div);
+            sum -= book_info[books_arr[i]].price;
+            totalPrice();
+        })
+
+        totalPrice();
+
     };
 }
 

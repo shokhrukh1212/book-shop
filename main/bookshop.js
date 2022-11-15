@@ -45,17 +45,13 @@ let content = document.createElement('div');
 let left_icon = document.createElement('div');
 let right_icon = document.createElement('div');
 let order_div = document.createElement('div');
-let order_icon = document.createElement('i');
 let order_number_div = document.createElement('div');
 
 left_icon.innerHTML = 'previous';
 right_icon.innerHTML = 'next'
 
 left_icon.setAttribute('class', 'left_icon');
-right_icon.setAttribute('class', 'right_icon');
-order_icon.setAttribute('class', 'fa-regular fa-cart-shopping');
 
-order_div.appendChild(order_icon);
 order_number_div.innerHTML = 0;
 order_div.appendChild(order_number_div);
 
@@ -130,15 +126,14 @@ let getInfo = async function() {
                 order_number_div.innerHTML++;
                 count++;
                 book_arr.push(book_info[i].number);
-            } 
+            }
         })
     }
 
-    localStorage.setItem('books', JSON.stringify(book_arr));
+    
 }
 
 getInfo();
-
 
 /* adding active class name */
 let content_children = content.children;
@@ -184,5 +179,7 @@ function next(direction) {
 order_div.addEventListener('click', orderPage);
 
 function orderPage() {
-    window.open('../order/index.html', "_blank")
+    window.open('../order/index.html', "_blank");
+    localStorage.setItem('books', JSON.stringify(book_arr));
 }
+

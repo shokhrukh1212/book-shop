@@ -4,6 +4,78 @@
     box-sizing: border-box;
 }
 
-.container{
-    
+#container{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 50px;
+    text-align: center;
+}
+
+#container > h1{
+    font-size: 3em;
+    color: chocolate;
+}
+
+#container > #total{
+    font-size: 2em;
+    padding-top: 30px;
+}
+
+#container > .child_div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+}
+
+#container > .child_div > img{
+    width: 500px;
+    height: 600px;
+}
+
+#container > .child_div > .book_info{
+    width: 100%;
+    padding: 0;
+}
+
+#container > .child_div > .book_info > h3{
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: blueviolet;
+}
+
+#container > .child_div > .book_info > h1{
+    margin-bottom: 20px;
+    color: darkcyan;
+}
+
+#container > .child_div > .book_info > p{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#container > .child_div > button{
+    width: 60px;
+    height: 40px;
+    background-color: red;
+    font-size: 2em;
+}
+#container > .child_div > button:hover{
+    cursor: pointer;
+    background-color: blue;
+    color: burlywood;
+    box-shadow: 2px 2px #000;
+}
+
+#container > .order_button{
+    width: 400px;
+    height: 50px;
+    font-size: 2em;
+    margin-bottom: 50px;
+}
+
+#container > .order_button:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+    color: burlywood;
 }
