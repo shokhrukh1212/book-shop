@@ -51,6 +51,7 @@ left_icon.innerHTML = 'previous';
 right_icon.innerHTML = 'next'
 
 left_icon.setAttribute('class', 'left_icon');
+right_icon.setAttribute('class', 'right_icon');
 
 order_number_div.innerHTML = 0;
 order_div.appendChild(order_number_div);
