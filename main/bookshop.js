@@ -46,6 +46,8 @@ let left_icon = document.createElement('div');
 let right_icon = document.createElement('div');
 let order_div = document.createElement('div');
 let order_number_div = document.createElement('div');
+let order_icon = document.createElement('i');
+order_icon.setAttribute('class', 'fa-solid fa-cart-shopping');
 
 left_icon.innerHTML = 'previous';
 right_icon.innerHTML = 'next'
@@ -55,6 +57,7 @@ right_icon.setAttribute('class', 'right_icon');
 
 order_number_div.innerHTML = 0;
 order_div.appendChild(order_number_div);
+order_div.appendChild(order_icon);
 
 container.setAttribute('class', 'container');
 content.setAttribute('class', 'content');
@@ -127,6 +130,10 @@ let getInfo = async function() {
                 order_number_div.innerHTML++;
                 count++;
                 book_arr.push(book_info[i].number);
+                button_bag.disabled = true;
+                button_bag.style.pointerEvents = 'none';
+                button_bag.innerHTML = 'added'
+                button_bag.style.opacity = 0.5;
             }
         })
     }

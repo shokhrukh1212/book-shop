@@ -32,7 +32,7 @@ let getInformation = async function() {
         let button = document.createElement('button');
 
         button.innerHTML = 'x';
-        order_button.innerHTML = 'Complete';
+        order_button.innerHTML = 'Confirm order';
 
         let img_src = `../main/${book_info[books_arr[i]].imageLink}`;
         img.src = img_src;
@@ -72,6 +72,11 @@ let getInformation = async function() {
         })
 
         totalPrice();
+
+
+        order_button.addEventListener('click', () => {
+            window.open('registration.html')
+        })
 
     };
 }

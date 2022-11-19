@@ -9,6 +9,9 @@
     min-height: 100vh;
     padding-top: 50px;
     text-align: center;
+    background: url(../main/images/background.jpg);
+    background-position: 100%;
+    background-size: contain;
 }
 
 #container > h1{
@@ -68,9 +71,9 @@
 }
 
 #container > .order_button{
-    width: 400px;
+    width: 300px;
     height: 50px;
-    font-size: 2em;
+    font-size: 1.6em;
     margin-bottom: 50px;
 }
 

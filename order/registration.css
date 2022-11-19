@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 50%;
+    height: 800px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background: url(../main/images/ord.jpg); */
+    /* background-repeat: no-repeat; */
+    border: 1px solid #000;
+    margin-top: 50px;
+}
+
+.container > h1{
+    margin-bottom: 10px;
+    font-size: 3.1em;
+    color: darkorange;
+}
+
+.container > p{
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: aqua;
+    text-decoration: none;
+}
+
+.container > form{
+    position: relative;
+}
+
+.container > form > i, small{
+    visibility: hidden;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.container > form > input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.container > form > input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.container > form > label, p{
+    font-size: 1.3em;
+    color: #000;
+    text-decoration: underline;
+    padding-right: 5px;
+    
+}
+.container > form > label.payment_type{
+    text-decoration: none;
+}
+
+.container > form > input{
+    display: block;
+    padding: 10px 30px 10px 10px;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    background-color: bisque;
+    border: none;
+    margin-top: 5px;
+}
+
+.container > form > input:invalid{
+    border: 2px solid red;
+}
+
+.container > form > input:valid{
+    border: 2px solid green;
+}
+
+.container > form > small{
+    border: 1.5px solid red;
+} 
+
+.container > form > input[type='radio']{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.container > form > button{
+    width: 100%;
+    padding: 6px 20px;
+    font-size: 1.3em;
+    margin-top: 20px;
+    background: linear-gradient(35deg, #CCFFFF, #FFCCCC);
+    color: black;
+    opacity: 0.5;
+}
+.container > form > button:hover{
+    cursor: pointer;
+    background: linear-gradient(35deg, #FFCCCC, #CCFFFF);
+}
