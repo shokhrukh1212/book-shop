@@ -11,7 +11,7 @@
     <title>Register</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>Welcome to order page</h1>
         <p>Here, you can register with your personal information and confirm your order</p>
 
@@ -26,7 +26,7 @@
 
             
             <label for="date">Date:</label>
-            <input autocomplete="off" id="date" type="date" min="2022-11-22" value="1999-01-01" required>
+            <input autocomplete="off" id="date" type="date" value="1999-01-01" required>
 
 
             <label for="street">Street:</label>
@@ -37,7 +37,7 @@
             <input autocomplete="off" id="house" type="number" min="0" placeholder="house number" required>
 
             <label for="flat">Flat number:</label>
-            <input autocomplete="off" id="flat" type="text" placeholder="flat number" pattern="\d([0-9 | -?])*" title="must be numbers and (-) between numbers" required>
+            <input id="flat" type="text" placeholder="flat number" pattern="\d([0-9 | -?])*" title="must be numbers and (-) between numbers" required>
 
             <p>Choose the payment type:</p>
             <label for="cash" class="payment_type">Cash</label>
@@ -45,7 +45,7 @@
             <label for="credit" class="payment_type">Credit</label>
             <input autocomplete="off" type="radio" id="credit" name="payment" required>
             <br>
-            <button disabled id="submitButton">Complete</button>
+            <button id="submitButton" disabled>Complete</button>
         </form>
     </div>
 

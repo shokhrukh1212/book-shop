@@ -1,36 +1,37 @@
-let header = document.createElement('header');
-let header_icon = document.createElement('div');
-let book_icon = document.createElement('i');
-let book_icon_title = document.createElement('h1');
+// let header = document.createElement('header');
+// let header_icon = document.createElement('div');
+// let book_icon = document.createElement('i');
+// let book_icon_title = document.createElement('h1');
 
-document.body.appendChild(header);
+// document.body.appendChild(header);
 
-/* header icon section */
-header_icon.setAttribute('class', 'header-icon');
-let title = document.createTextNode('Bookshop');
-book_icon_title.appendChild(title);
-book_icon.setAttribute('class', "fas fa-book");
-header_icon.appendChild(book_icon);
-header_icon.appendChild(book_icon_title);
-header.appendChild(header_icon);
+// /* header icon section */
+// header_icon.setAttribute('class', 'header-icon');
+// let title = document.createTextNode('Bookshop');
+// book_icon_title.appendChild(title);
+// book_icon.setAttribute('class', "fas fa-book");
+// header_icon.appendChild(book_icon);
+// header_icon.appendChild(book_icon_title);
+// header.appendChild(header_icon);
 
-/*ul element*/
-let ul = document.createElement('ul');
-ul.setAttribute('id', 'navbar_list');
+// /*ul element*/
+// let ul = document.createElement('ul');
+// ul.setAttribute('id', 'navbar_list');
 
-let navbar_arr = ['About', 'Books', 'Order', 'Useful'];
+// let navbar_arr = ['About', 'Books', 'Order', 'Useful'];
 
-for(let e=0; e<navbar_arr.length; e++) {
-    let li = document.createElement('li');
-    let a = document.createElement('a');
+// for(let e=0; e<navbar_arr.length; e++) {
+//     let li = document.createElement('li');
+//     let a = document.createElement('a');
 
-    a.innerHTML = navbar_arr[e];
-    a.setAttribute('href', '#');
-    li.appendChild(a);
-    ul.appendChild(li);
-}
+//     a.innerHTML = navbar_arr[e];
+//     a.setAttribute('href', '#');
+//     li.appendChild(a);
+//     ul.appendChild(li);
+// }
 
-header.appendChild(ul);
+// header.appendChild(ul);
+
 
 
 
@@ -42,18 +43,19 @@ let container = document.createElement('div');
 let content = document.createElement('div');
 
 /* left and right icons */
-let left_icon = document.createElement('div');
-let right_icon = document.createElement('div');
+let left_icon_icon = document.createElement('i');
+let right_icon_icon = document.createElement('i');
 let order_div = document.createElement('div');
 let order_number_div = document.createElement('div');
 let order_icon = document.createElement('i');
 order_icon.setAttribute('class', 'fa-solid fa-cart-shopping');
 
-left_icon.innerHTML = 'previous';
-right_icon.innerHTML = 'next'
 
-left_icon.setAttribute('class', 'left_icon');
-right_icon.setAttribute('class', 'right_icon');
+left_icon_icon.setAttribute('class', 'fas fa-light fa-circle-left');
+right_icon_icon.setAttribute('class', 'fas fa-light fa-circle-right');
+left_icon_icon.classList.add('left_icon');
+right_icon_icon.classList.add('right_icon');
+
 
 order_number_div.innerHTML = 0;
 order_div.appendChild(order_number_div);
@@ -64,9 +66,9 @@ content.setAttribute('class', 'content');
 order_div.setAttribute('class', 'order_div');
 
 document.body.appendChild(container);
-container.appendChild(left_icon);
+container.appendChild(left_icon_icon);
 container.appendChild(content);
-container.appendChild(right_icon);
+container.appendChild(right_icon_icon);
 container.appendChild(order_div);
 
 
@@ -136,6 +138,32 @@ let getInfo = async function() {
                 button_bag.style.opacity = 0.5;
             }
         })
+
+
+        button_more.addEventListener('click', () => {
+            let more_container = document.createElement('div');
+            let close_button = document.createElement('button');
+            let authorForMore = document.createElement('h2');
+            let more_info = document.createElement('p');
+
+            more_container.setAttribute('class', 'moreContainer');
+
+
+            
+            authorForMore.innerText = book_info[i].author;
+            more_info.innerText = book_info[i].description;
+            close_button.innerHTML = 'close';
+
+            book_information.appendChild(more_container);
+            more_container.appendChild(authorForMore);
+            more_container.appendChild(more_info);
+            more_container.appendChild(close_button);
+
+
+            close_button.addEventListener('click', () => {
+                more_container.style.display = 'none'
+            })
+        })
     }
 
     
@@ -153,12 +181,12 @@ function addActive(all ,elem) {
 }
 
 /* ------------------------------------------------------------ */
-left_icon.addEventListener('click', function() {
+left_icon_icon.addEventListener('click', function() {
     next('left');
 })
 
 
-right_icon.addEventListener('click', function() {
+right_icon_icon.addEventListener('click', function() {
     next('right');
 })
 

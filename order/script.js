@@ -69,6 +69,10 @@ let getInformation = async function() {
             container.removeChild(child_div);
             sum -= book_info[books_arr[i]].price;
             totalPrice();
+
+            if(sum == 0) {
+                order_button.style.display = 'none'
+            }
         })
 
         totalPrice();
@@ -77,7 +81,7 @@ let getInformation = async function() {
         order_button.addEventListener('click', () => {
             window.open('registration.html')
         })
-
+        
     };
 }
 
